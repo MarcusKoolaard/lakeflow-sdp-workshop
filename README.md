@@ -1,6 +1,8 @@
 # Lakeflow Spark Declarative Pipelines Workshop
 
-A hands-on 1.5-hour workshop teaching Databricks Lakeflow Spark Declarative Pipelines (formerly Delta Live Tables) with a focus on data quality, Change Data Capture, and production best practices.
+A hands-on 2-hour workshop teaching Databricks Lakeflow Spark Declarative Pipelines (formerly Delta Live Tables) with a focus on data quality, Change Data Capture, and production best practices.
+
+Block a 2-hour window, grab a coffee, and smash through it end-to-end — the exercises build on each other.
 
 ## Workshop Structure
 

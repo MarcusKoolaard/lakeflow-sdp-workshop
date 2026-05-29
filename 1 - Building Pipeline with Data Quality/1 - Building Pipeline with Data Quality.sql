@@ -214,9 +214,9 @@
 -- MAGIC
 -- MAGIC **Key Concepts**:
 -- MAGIC - `CREATE OR REFRESH STREAMING TABLE`: Defines an incrementally updated table
--- MAGIC - `STREAM read_files()`: Auto Loader - incrementally processes new files
+-- MAGIC - `STREAM read_files()`: Auto Loader - incrementally processes new files; new columns are picked up automatically and unparseable values land in `_rescued_data` instead of failing the load
 -- MAGIC - `${source}`: Variable substitution from pipeline configuration
--- MAGIC - `pipelines.reset.allowed = false`: Prevents accidental full refresh
+-- MAGIC - `pipelines.reset.allowed = false`: Prevents accidental full refresh ([when to full refresh](https://docs.databricks.com/aws/en/dlt/updates))
 -- MAGIC - Checkpoint is managed automatically
 -- MAGIC - Inherit default catalog and schema names or write out to different catalogs and schemas using the fully qualified name 
 -- MAGIC
@@ -250,6 +250,7 @@
 -- MAGIC - No `STREAM` keyword: Reads all data from source
 -- MAGIC - Automatically optimized incremental refresh when possible
 -- MAGIC - Ideal for aggregations and analytics
+-- MAGIC - Choosing between streaming tables, materialized views, and views — see [batch vs streaming recommendations](https://docs.databricks.com/aws/en/data-engineering/batch-vs-streaming#recommendations)
 
 -- COMMAND ----------
 

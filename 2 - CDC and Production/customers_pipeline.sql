@@ -187,11 +187,11 @@ FROM silver.customers;
 -------------------------------------------------------
 -- If you want to track history, create a separate flow:
 --
--- CREATE OR REFRESH STREAMING TABLE 2_silver_db.customers_history
+-- CREATE OR REFRESH STREAMING TABLE silver.customers_history
 --   COMMENT "Customer history (SCD Type 2)";
 --
--- CREATE FLOW customers_cdc_flow_scd2 AS 
--- AUTO CDC INTO 2_silver_db.customers_history
+-- CREATE FLOW customers_cdc_flow_scd2 AS
+-- AUTO CDC INTO silver.customers_history
 -- FROM STREAM bronze.customers_clean
 --   KEYS (customer_id)
 --   APPLY AS DELETE WHEN operation = 'DELETE'

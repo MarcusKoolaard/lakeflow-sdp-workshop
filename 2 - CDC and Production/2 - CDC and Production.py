@@ -68,6 +68,8 @@
 # MAGIC - ✅ Built-in deduplication
 # MAGIC - ✅ Optimized performance
 # MAGIC - ✅ Handles late-arriving data
+# MAGIC
+# MAGIC > **Migrating from `APPLY CHANGES INTO`?** `AUTO CDC INTO` is the newer syntax — same semantics, drop-in replacement.
 
 # COMMAND ----------
 
@@ -399,6 +401,13 @@
 # MAGIC
 # MAGIC Now that our pipeline handles both orders and customer CDC, let's schedule it for production!
 # MAGIC
+# MAGIC ### Triggered vs Continuous
+# MAGIC
+# MAGIC | Mode | Best for | Cost | Latency |
+# MAGIC |---|---|---|---|
+# MAGIC | **Triggered** (default) | Scheduled batch refresh | Lower — compute spins down between runs | Minutes–hours |
+# MAGIC | **Continuous** | Always-on streaming | Higher — compute stays up | Seconds |
+# MAGIC
 # MAGIC ### Step 1: Schedule a Pipeline with Lakeflow jobs
 # MAGIC
 # MAGIC 1. Select the **Schedule** icon (🗓️) in the top left of the **Pipeline** tab OR on the top right of the page (in between **Settings** and **Share**)
@@ -421,7 +430,7 @@
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ## K. Key Takeaways - Lesson 2
+# MAGIC ## H. Key Takeaways - Lesson 2
 # MAGIC
 # MAGIC ✅ **AUTO CDC INTO** simplifies Change Data Capture with declarative syntax
 # MAGIC
@@ -481,7 +490,6 @@
 # MAGIC - All schemas (bronze, silver, gold)
 # MAGIC - All tables and data
 # MAGIC - The raw volume and all source files
-# MAGIC - UC functions (add_orders, add_status)
 # MAGIC
 # MAGIC **This action cannot be undone!**
 

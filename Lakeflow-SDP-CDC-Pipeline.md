@@ -179,14 +179,20 @@ This creates a large fake CDC dataset for the rest of the tutorial. Next, ingest
 
 ## Step 3: Incrementally ingest data with Auto Loader (bronze)
 
-Ingest the raw JSON from cloud storage into a bronze layer. This is hard to do by hand: you must
-operate at scale (potentially millions of small files), infer schema and JSON types, handle bad
-records, and cope with schema evolution (for example, a new column on the customer table). Auto
-Loader handles all of this. Defining the target as a **streaming table** means each run consumes
-only new data; a non-streaming table would rescan everything. See
-[Streaming tables](https://learn.microsoft.com/en-us/azure/databricks/ldp/streaming-tables).
+The next step is to ingest the raw data from the (faked) cloud storage into a bronze layer.
 
-1. Paste the following into the `my_transformation` file created with your pipeline, replacing `<catalog>` and `<schema>` with your defaults. Use Python or SQL to match the language you chose.
+This can be challenging for multiple reasons, as you must:
+
+- Operate at scale, potentially ingesting millions of small files.
+- Infer schema and JSON type.
+- Handle bad records with incorrect JSON schema.
+- Take care of schema evolution (for example, a new column in the customer table).
+
+Auto Loader simplifies this ingestion, including schema inference and schema evolution, while scaling to millions of incoming files. Auto Loader is available in Python using `cloudFiles` and in SQL using the `SELECT * FROM STREAM read_files(...)` and can be used with a variety of formats (JSON, CSV, Apache Avro, etc.):
+
+Defining the table as a streaming table guarantees that you only consume new incoming data. If you do not define it as a streaming table, it scans and ingests all the available data. See [Streaming tables](https://learn.microsoft.com/en-us/azure/databricks/ldp/streaming-tables) for more information.
+
+1. To ingest the incoming CDC data using Auto Loader, copy and paste the following code into the code file that was created with your pipeline (called `my_transformation.py` or `my_transformation.sql`). You can use Python or SQL, based on the language you chose when creating the pipeline. Be sure to replace the `<catalog>` and `<schema>` with the ones that you set up for the default for the pipeline.
 
 ### Python
 
@@ -220,7 +226,10 @@ def customers_bronze_ingest_flow():
 
 ```sql
 CREATE OR REFRESH STREAMING TABLE customers_cdc_bronze
-COMMENT "New customer data incrementally ingested from cloud object storage landing zone";
+COMMENT "New customer data incrementally ingested from cloud object storage landing zone"
+TBLPROPERTIES (
+  "pipelines.reset.allowed" = "false"
+);
 
 CREATE FLOW customers_bronze_ingest_flow AS
 INSERT INTO customers_cdc_bronze BY NAME
@@ -235,12 +244,12 @@ INSERT INTO customers_cdc_bronze BY NAME
 
 2. Click <img src="https://learn.microsoft.com/en-us/azure/databricks/_static/images/product-icons/playicon.svg" alt="Play icon" height="14"> **Run file** or **Run pipeline**. With only one source file, these are equivalent. When the run completes, the graph shows a single `customers_cdc_bronze` table, and the bottom panel shows its details.
 
-> ### 🧩 Workshop add-on: Auto Loader, `_rescued_data`, and schema evolution
-> Auto Loader (`cloudFiles` in Python, `read_files` in SQL) remembers which files it has already
-> processed, so reruns ingest only new files. Fields it cannot fit the inferred schema, or
-> malformed records, are captured in the `_rescued_data` column instead of failing the load, and
-> new source columns are picked up automatically. You filter on `_rescued_data IS NULL` in the next
-> step to quarantine bad records.
+### 🧩 Workshop add-on: Key Concepts
+- Checkpoints are managed automatically
+- Pipeline code inherits the default catalog and schema names. You can also write out to different catalogs and schemas using fully qualified names
+- `pipelines.reset.allowed = false`: Prevents accidental full refresh ([when to full refresh](https://docs.databricks.com/aws/en/dlt/updates))
+- Auto Loader, `_rescued_data`, and schema evolution: Auto Loader (`cloudFiles` in Python, `read_files` in SQL) remembers which files it has already processed, so reruns ingest only new files. Fields it cannot fit the inferred schema, or malformed records, are captured in the `_rescued_data` column instead of failing the load, and new source columns are picked up automatically. You filter on `_rescued_data IS NULL` in the next step to quarantine bad records.
+
 
 ## Step 4: Clean the data with expectations (silver)
 

@@ -1,32 +1,21 @@
-# Lakeflow Spark Declarative Pipelines Workshop
+# Lakeflow Spark Declarative Pipelines Workshops
 
 A hands-on companion for learning Databricks Lakeflow Spark Declarative Pipelines (SDP, formerly Delta Live Tables).
 
-This repository offers the workshop in two formats: a self-paced single-file companion, [`Lakeflow-SDP-CDC-Pipeline.md`](Lakeflow-SDP-CDC-Pipeline.md), and the original instructor-led course under [`instructor-led-sdp-workshop/`](instructor-led-sdp-workshop/). The companion is a fork of the official Microsoft Learn Lakeflow tutorials with a workshop teaching layer added on top. For the full set of official tutorials it draws from, see the parent page: [Lakeflow Declarative Pipelines tutorials](https://learn.microsoft.com/en-us/azure/databricks/ldp/tutorials).
+This repository offers the workshop in two formats: 
+1. Self-paced single-file workshop, [`Lakeflow-SDP-CDC-Pipeline.md`](Lakeflow-SDP-CDC-Pipeline.md) - last updated June 2026
+2. Instructor-led course under [`instructor-led-sdp-workshop/`](instructor-led-sdp-workshop/) - last updated November 2025
 
 ## What is inside
 
-- [`Lakeflow-SDP-CDC-Pipeline.md`](Lakeflow-SDP-CDC-Pipeline.md): the complete workshop. It follows the MS Learn change-data-capture pipeline flow (ingest with Auto Loader into bronze, clean to silver with expectations, `AUTO CDC INTO` a current-state customers table, build an SCD2 history table, aggregate in gold, and schedule as a job), reuses the official code samples and the pipeline diagram, and adds workshop-only callouts: learning objectives, the `transformations/` folder model, the three expectation violation modes, an AUTO CDC clause-by-clause breakdown, SCD Type 1 vs Type 2, an incremental-processing demo, the full-refresh guard, inner-loop tooling, triggered vs continuous execution, and key takeaways.
+- [`Lakeflow-SDP-CDC-Pipeline.md`](Lakeflow-SDP-CDC-Pipeline.md): the complete workshop. Based on [Tutorial: Build an ETL pipeline using change data capture](https://learn.microsoft.com/en-us/azure/databricks/ldp/tutorial-pipelines). It follows a change-data-capture pipeline flow (ingest with Auto Loader into bronze, clean to silver with expectations, `AUTO CDC INTO` a current-state customers table, build an SCD2 history table, aggregate in gold, and schedule as a job), with learning objectives, the `transformations/` folder model, the three expectation violation modes, an AUTO CDC clause-by-clause breakdown, SCD Type 1 vs Type 2, an incremental-processing demo, the full-refresh guard, inner-loop tooling, triggered vs continuous execution, and key takeaways.
 - [`instructor-led-sdp-workshop/`](instructor-led-sdp-workshop/): the original multi-notebook, instructor-led course (Setup, Exercise 1, Exercise 2, plus `transformations/` and `utilities/`). See its own [README](instructor-led-sdp-workshop/README.md).
-- `images/`: diagrams referenced by the workshop file.
 
 ## How to use it
 
 1. Open [`Lakeflow-SDP-CDC-Pipeline.md`](Lakeflow-SDP-CDC-Pipeline.md) and read it top to bottom.
-2. Follow the steps in an Azure Databricks workspace with Unity Catalog enabled.
-3. Lean on the marked Workshop add-on callouts for the concepts and decision frameworks that the base tutorial does not cover.
-
-## Requirements
-
-- An Azure Databricks workspace with Unity Catalog enabled.
-- Permission to create a compute resource, or access to one.
-- Permission to create a schema in a catalog (`ALL PRIVILEGES`, or `USE CATALOG` plus `CREATE SCHEMA`).
-
-## Source and attribution
-
-The Azure Databricks documentation is authored by Databricks and published to Microsoft Learn. This workshop adapts those tutorials for internal training use, with documentation-owner sign-off. Sections that come from the official flow are adapted; everything marked Workshop add-on is added by us. Parent tutorials page: https://learn.microsoft.com/en-us/azure/databricks/ldp/tutorials
-
----
+2. Follow the steps in an Azure Databricks workspace.
+3. Note workshop add-on callouts for key concepts and decision frameworks.
 
 Version: 2.0
 Last updated: June 2026

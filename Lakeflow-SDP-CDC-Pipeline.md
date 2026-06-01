@@ -1,8 +1,5 @@
 > **Note:** This document extends the official [_Build an ETL pipeline using change data capture_](https://learn.microsoft.com/en-us/azure/databricks/ldp/tutorial-pipelines)
-> tutorial with additional explanations and further resources.
-
-> _Legend:_ plain sections are adapted from the source tutorial. **🧩 Workshop add-on** marks
-> content added by us.
+> tutorial with additional explanations and further resources (see **🧩 Workshop add-on** sections).
 
 Last updated: 2026-06-02.
 

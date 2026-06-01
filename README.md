@@ -3,7 +3,7 @@
 A hands-on companion for learning Databricks Lakeflow Spark Declarative Pipelines (SDP, formerly Delta Live Tables).
 
 This repository offers the workshop in two formats: 
-1. Self-paced single-file workshop, [`Lakeflow-SDP-CDC-Pipeline.md`](Lakeflow-SDP-CDC-Pipeline.md) - last updated June 2026
+1. **Start here** - Self-paced single-file workshop, [`Lakeflow-SDP-CDC-Pipeline.md`](Lakeflow-SDP-CDC-Pipeline.md) - last updated June 2026
 2. Instructor-led course under [`instructor-led-sdp-workshop/`](instructor-led-sdp-workshop/) - last updated November 2025
 
 ## What is inside

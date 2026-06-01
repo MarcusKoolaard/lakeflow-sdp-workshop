@@ -551,14 +551,12 @@ the **Jobs & pipelines** list to see run history or trigger **Run now**. See
 > ### 🧩 Workshop add-on: curated next steps and references
 > | Topic | Link |
 > |---|---|
-> | Original tutorial (this fork's source) | https://learn.microsoft.com/en-us/azure/databricks/ldp/tutorial-pipelines |
 > | All Lakeflow tutorials (parent page) | https://learn.microsoft.com/en-us/azure/databricks/ldp/tutorials |
 > | Change data capture and snapshots | https://learn.microsoft.com/en-us/azure/databricks/ldp/what-is-change-data-capture |
-> | Lakeflow Pipelines Editor and the `transformations/` folder | https://docs.databricks.com/aws/en/ldp/multi-file-editor |
 > | Manage data quality with expectations | https://learn.microsoft.com/en-us/azure/databricks/ldp/expectations |
 > | When to (and not to) full-refresh | https://docs.databricks.com/aws/en/ldp/updates |
 > | Batch vs streaming decision rubric | https://docs.databricks.com/aws/en/data-engineering/batch-vs-streaming#recommendations |
-> | `pyspark.pipelines` Python dev guide | https://docs.databricks.com/aws/en/ldp/developer/python-dev |
 > | Where is DLT? (rename and soft-deprecation) | https://docs.databricks.com/aws/en/ldp/where-is-dlt |
-> | Tutorial: create a source-controlled pipeline | https://learn.microsoft.com/en-us/azure/databricks/ldp/source-controlled |
-> | Tutorial: convert a pipeline to a bundle | https://learn.microsoft.com/en-us/azure/databricks/ldp/convert-to-dab |
+ | `pyspark.pipelines` Python dev guide | https://docs.databricks.com/aws/en/ldp/developer/python-dev |
+> | Tutorial: create a source-controlled pipeline (_strongly recommend doing next_) | https://learn.microsoft.com/en-us/azure/databricks/ldp/source-controlled |
+> | Tutorial: convert a pipeline to a bundle (_strongly recommend doing #2 after source-controlled one_)| https://learn.microsoft.com/en-us/azure/databricks/ldp/convert-to-dab |

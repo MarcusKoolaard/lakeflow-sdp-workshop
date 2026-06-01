@@ -229,6 +229,13 @@ def users_and_bookings():
 > - Production pipelines run on a chosen **execution mode** and are orchestrated by
 >   Lakeflow Jobs.
 
+## The bigger picture: a production CDC pipeline
+
+The deep workshop in this repository extends these basics into a full Change Data
+Capture pipeline, orchestrated by a Lakeflow Job. The implemented flow looks like this:
+
+![ETL pipeline flow diagram: raw CDC JSON files load through customers_cdc_bronze and customers_cdc_clean, AUTO CDC merges into the customers table and customers_history, and a materialized view produces customers_history_agg, all orchestrated by a Lakeflow Job](images/etl-pipeline-flow.png)
+
 ## Where to go next
 
 > ### 🧩 Workshop add-on: curated next steps and references

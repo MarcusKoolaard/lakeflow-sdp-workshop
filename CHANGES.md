@@ -1,5 +1,7 @@
 # Workshop Updates Summary
 
+**2026-06-01 (v2.0):** Replaced the multi-folder notebook workshop with a single Markdown companion (`Lakeflow-SDP-Get-Started.md`) adapted from the Microsoft Learn Lakeflow tutorials, added the production CDC flow diagram, and repointed the README at the parent tutorials page.
+
 ## Overview
 
 Restructured the Lakeflow Spark Declarative Pipelines workshop to:

@@ -5,12 +5,17 @@ Last updated: 2026-06-02.
 
 ---
 
+A hands-on Level 200 2-hour Lakeflow SDP tutorial (formerly Delta Live Tables) with a focus on data quality, Change Data Capture, and production best practices.
+- Allow 60 minutes to work through the content, and 30-60 minutes for additional tutorial / content
+
+Block a 2-hour window, grab a coffee, and smash through it end-to-end — the exercises build on each other.
+
 # Tutorial: Build an ETL pipeline using change data capture
 
 This tutorial shows how to build and deploy an ETL (extract, transform, load) pipeline with
 **Lakeflow Spark Declarative Pipelines (SDP)**, **Auto Loader**, and **change data capture (CDC)**.
 An ETL pipeline reads from source systems, transforms the data (quality checks, de-duplication,
-and so on), and writes it to a target such as a lakehouse or a data warehouse.
+and so on), and writes it to a target such as a lakehouse or a data warehouse. 
 
 Working from a `customers` table in a transactional database, you will:
 

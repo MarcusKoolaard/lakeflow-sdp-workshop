@@ -1,17 +1,10 @@
-> **Note: this document is a fork of the Microsoft Learn tutorial
-> [_Build an ETL pipeline using change data capture_](https://learn.microsoft.com/en-us/azure/databricks/ldp/tutorial-pipelines),
-> with workshop additions.**
-> The Azure Databricks documentation is authored by Databricks and published to Microsoft Learn.
-> This companion follows that tutorial's step flow, code samples, and diagram; the connecting
-> narrative has been rewritten for workshop use. Everything marked **🧩 Workshop add-on** below is
-> *added* material that is **not** in the original page. It ports the teaching layer from the
-> internal Lakeflow SDP Workshop on top of the official flow.
->
-> Source last reviewed: 2026-05-12. Original content (c) Microsoft, authored by Databricks.
-> Reproduced and extended for internal workshop training with documentation-owner sign-off.
->
+> **Note:** This document extends the official [_Build an ETL pipeline using change data capture_](https://learn.microsoft.com/en-us/azure/databricks/ldp/tutorial-pipelines)
+> tutorial with additional explanations and further resources.
+
 > _Legend:_ plain sections are adapted from the source tutorial. **🧩 Workshop add-on** marks
 > content added by us.
+
+Last updated: 2026-06-02.
 
 ---
 
@@ -58,13 +51,11 @@ and [Change data capture and snapshots](https://learn.microsoft.com/en-us/azure/
 
 To complete this tutorial you must:
 
-- Be signed in to an Azure Databricks workspace.
-- Have **Unity Catalog** enabled on the workspace.
-- Have **serverless compute** available (on by default in Unity Catalog workspaces). If
-  serverless is not offered in your region, the default workspace compute should also work.
-- Have permission to create a compute resource, or access to one.
-- Have permission to create a schema in a catalog (`USE CATALOG` and `CREATE SCHEMA`).
-- Have permission to create a volume in an existing schema (`USE SCHEMA` and `CREATE VOLUME`).
+- Be logged into a Databricks Workspace with **Unity Catalog** enabled.
+- Have [**serverless compute**](https://learn.microsoft.com/en-us/azure/databricks/compute/serverless/) available.
+- Have permission to [create a compute resource](https://learn.microsoft.com/en-us/azure/databricks/compute/use-compute), or access to one.
+- Have permission to [create a schema](https://learn.microsoft.com/en-us/azure/databricks/schemas/create-schema) in a catalog (`USE CATALOG` and `CREATE SCHEMA`).
+- Have permission to [create a volume](https://learn.microsoft.com/en-us/azure/databricks/volumes/utility-commands) in an existing schema (`USE SCHEMA` and `CREATE VOLUME`).
 
 ## Change data capture in an ETL pipeline
 
@@ -523,8 +514,7 @@ the **Jobs & pipelines** list to see run history or trigger **Run now**. See
 > | Cost | Pay per run | Always-on compute |
 > | Default and good for | Most ETL and scheduled refreshes (this tutorial) | Real-time or low-latency needs |
 >
-> Start with **Triggered** unless you have a real latency requirement. See
-> [batch vs streaming recommendations](https://docs.databricks.com/aws/en/data-engineering/batch-vs-streaming#recommendations).
+> Start with **Triggered** unless you have a real latency requirement. For choosing between streaming tables, materialized views, and views see [batch vs streaming recommendations](https://docs.databricks.com/aws/en/data-engineering/batch-vs-streaming#recommendations).
 
 > ### 🧩 Workshop add-on: guard against accidental full refreshes
 > A **full refresh** drops a streaming table's state and re-ingests everything from source, which is

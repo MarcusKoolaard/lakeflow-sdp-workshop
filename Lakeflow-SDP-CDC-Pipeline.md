@@ -491,10 +491,28 @@ GROUP BY id
 4. Click <img src="https://learn.microsoft.com/en-us/azure/databricks/_static/images/product-icons/playicon.svg" alt="Play icon" height="14"> **Run file**. A new table appears in the graph, depending on `customers_history`. The pipeline is now complete; you can run the whole thing with **Run pipeline** to confirm.
 
 > ### 🧩 Workshop add-on: see incremental processing for yourself
-> Re-run the **Setup data** notebook to drop a fresh batch of CDC events into the `raw_data` volume,
-> then click **Run pipeline** again. Auto Loader ingests only the new files into
-> `customers_cdc_bronze`, `AUTO CDC` upserts the changes into `customers`, and `customers_history`
-> gains new versioned rows. This demonstrates incremental processing rather than just describing it.
+> The **Setup data** generator from Step 2 is guarded by `try: dbutils.fs.ls(...)`, and it writes
+> with `mode("overwrite")`, so simply re-running it does **nothing** once the `raw_data/customers`
+> folder exists. To watch incremental processing, land a *new* batch of files instead. After the
+> Step 2 generator cell has run once (so `volume_folder` and the `fake_*` UDFs are defined in the
+> notebook), add and run this cell in the same notebook:
+>
+> ```python
+> # Append a fresh batch of CDC events (bypasses the run-once guard above).
+> df_new = (spark.range(0, 1000).repartition(5)
+>   .withColumn("id", fake_id())
+>   .withColumn("firstname", fake_firstname())
+>   .withColumn("lastname", fake_lastname())
+>   .withColumn("email", fake_email())
+>   .withColumn("address", fake_address())
+>   .withColumn("operation", fake_operation())
+>   .withColumn("operation_date", fake_date()))
+> df_new.write.format("json").mode("append").save(volume_folder + "/customers")
+> ```
+>
+> Then click **Run pipeline**. Auto Loader ingests only the new files into `customers_cdc_bronze`,
+> `AUTO CDC` upserts the changes into `customers`, and `customers_history` gains new versioned rows.
+> This demonstrates incremental processing rather than just describing it.
 
 ## Step 8: Schedule the pipeline as a job
 

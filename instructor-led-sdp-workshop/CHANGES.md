@@ -1,7 +1,5 @@
 # Workshop Updates Summary
 
-**2026-06-02 (v2.0):** Added a self-paced single-file companion (`Lakeflow-SDP-CDC-Pipeline.md`) adapted from the Microsoft Learn _Build an ETL pipeline using change data capture_ tutorial, with the CDC pipeline flow diagram. Moved the original instructor-led course under `instructor-led-sdp-workshop/` (previous workshop plus the tidy fixes), and repointed the README at the parent tutorials page.
-
 ## Overview
 
 Restructured the Lakeflow Spark Declarative Pipelines workshop to:
